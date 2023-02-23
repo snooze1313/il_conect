@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from .forms import UserForm
 
 
 # Create your views here.
@@ -18,7 +19,7 @@ def singup(request):
         if request.POST['password1'] == request.POST['password1']:
             try:
                 user = User.objects.create_user(
-                username=request.POST['username'], password=request.POST['password1'])
+                    username=request.POST['username'], password=request.POST['password1'])
                 user.save()
                 return HttpResponse('User created successfully')
             except:
@@ -76,3 +77,18 @@ def users(request):
 
 def modify_user(request):
     return render(request, 'modify_user.html')
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/home/')
+    else:
+        form = UserForm()
+    if request == 'GET':
+        return render(request, 'register.html', {
+            'form': UserCreationForm
+        })
+    return render(request, 'register.html', {'form': form})
