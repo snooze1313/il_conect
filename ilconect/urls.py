@@ -20,8 +20,10 @@ from inventory  import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.login_user),
+    path('logout/', views.logout_user, name='logout'),
     path('home/', views.home),
-    path('singup/', views.singup),
+    path('singup/', views.singup, name='singup'),
     path('inventory/', views.inventory),
     path('products/', views.products),
     path('products/new/', views.new_product),
@@ -32,7 +34,6 @@ urlpatterns = [
     path('categories/', views.categories),
     path('categories/new/', views.new_category),
     path('categories/modify/', views.modify_category),
-    path('users/', views.users),
-    path('', views.login),
-    path('register/', views.register),
+    path('users/', views.users, name='users'),
+    path('users/modify_user/', views.modify_user),
 ]

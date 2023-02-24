@@ -1,5 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container-fluid">
 <h1>Users</h1>
+</div>
+
+<div class="container-fluid">
+    <table class="table table-striped table-hover table-bordered mx-auto">
+        <thead>
+            <tr class="table-dark">
+                <th>Username</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Is active</th>
+                <th>Date joined</th>
+                <th>Last login</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td><a href="modify_user/" class="text-decoration-none text-reset">{{ user.username }}</a></td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.is_active }}</td>
+                <td>{{ user.date_joined }}</td>
+                <td>{{ user.last_login }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}
