@@ -13,7 +13,7 @@
                     <th>Price</th>
                     <th>Description</th>
                     <th>Supplier</th>
-                    <th>By</th>
+                    <th>Registered by</th>
                     <th>Date joined</th>
                 </tr>
             </thead>
@@ -26,11 +26,11 @@
 
                     <td>{{ product.description }}</td>
 
-                    <td>{{ product.supplier_id }}</td>
+                    <td>{{ product.supplier.name }}</td>
 
-                    <td>{{ product.user_id }}</td>
+                    <td>{{ product.user.first_name }}{{ product.user.last_name }}</td>
 
-                    <td>{{ product.user_id }}</td>
+                    <td>Fecha pendiente por motivos de base de datos</td>
                 </tr>
                 {% endfor %}
             </tbody>
